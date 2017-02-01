@@ -1,4 +1,4 @@
-import isomorphicFetch from 'isomorphic-fetch';
+import fetchPonyfill from 'fetch-ponyfill';
 import isPlainObject from 'lodash.isplainobject';
 
 import CALL_API from './CALL_API';
@@ -6,8 +6,7 @@ import { isRSAA, validateRSAA } from './validation';
 import { InvalidRSAA, RequestError, ApiError } from './errors' ;
 import { getJSON, normalizeTypeDescriptors, actionWith } from './util';
 
-function createApiMiddleware(fetch = isomorphicFetch) {
-
+function createApiMiddleware(fetch = fetchPonyfill().fetch) {
   /**
    * A Redux middleware that processes RSAA actions.
    *
